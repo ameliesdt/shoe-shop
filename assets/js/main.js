@@ -207,3 +207,35 @@ for (let i = 0; i < addtoCart.length; i++) {
 }
 
 //subscribe to functionality
+let submitBtn = document.querySelector('#submit');
+
+submitBtn.addEventListener("click", (event => {
+    event.preventDefault();
+    console.log('klik');
+
+    console.log('klik');
+    let newsletterTitle = document.querySelector('#newsletter-title');
+    let newsletterInfo = document.querySelector('#newsletter-info');
+    let container = document.querySelector('#form');
+    let input = document.querySelector('#email');
+    let inputValue = document.querySelector('#email').value;
+    let inputError = document.querySelector('#newsletter-error');
+    
+    function validateMail(email) {
+        let re = /\S+@\S+\.\S+/;
+        return re.test(email); 
+    }
+
+    if (validateMail(inputValue) == true) {
+        newsletterTitle.innerText ='THANK YOU!';
+        newsletterInfo.innerText = 'You will get our response shortly.';
+        input.style.display = 'none';
+        submitBtn.style.display = 'none';
+    } else {
+        inputError.innerText += "Please enter a valid email address.";
+        submitBtn.style.display = 'none';
+        newsletterInfo.style.display = 'none';
+        newsletterTitle.style.display = 'none';
+    }
+
+}));
